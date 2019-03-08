@@ -4,6 +4,13 @@
   "description": "Typescript + Express + Docker + Watch + Debug Example",
   "scripts": {
     "build": "tsc",
+    "docker:build": "tsc && docker build . -t sampleapp",
+    "docker:run": "docker run -p 8080:8080 -d --name senesh sampleapp",
+    "docker:stop": "docker stop senesh && docker rm senesh",
+    "docker:rerun": "npm run docker:stop && npm run docker:run",
+    "docker:attach": "docker exec -it senesh bash",
+    "docker:all": "npm run docker:build && npm run docker:stop && npm run docker:run",
+    "docker:logs": "docker logs senesh",
     "start": "nodemon dist/server.js"
   },
   "keywords": [
