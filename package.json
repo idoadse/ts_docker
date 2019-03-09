@@ -5,13 +5,13 @@
   "scripts": {
     "build": "tsc",
     "docker:build": "tsc && docker build . -t sampleapp",
-    "docker:run": "docker run -v %cd%\\dist:/usr/src/app/dist -p 8080:8080 -d --name senesh sampleapp",
+    "docker:run": "docker run -v %cd%\\dist:/usr/src/app/dist -p 9229:9229 -p 8080:8080 -d --name senesh sampleapp",
     "docker:stop": "docker stop senesh && docker rm senesh",
     "docker:rerun": "npm run docker:stop && npm run docker:run",
     "docker:attach": "docker exec -it senesh bash",
     "docker:all": "npm run docker:build && npm run docker:stop && npm run docker:run",
     "docker:logs": "docker logs senesh",
-    "start": "nodemon -L dist/server.js"
+    "start": "nodemon -L --inspect-brk=0.0.0.0:9229 dist/server.js"
   },
   "keywords": [
     "Typescript",
